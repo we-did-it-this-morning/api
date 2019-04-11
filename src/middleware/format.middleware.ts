@@ -1,8 +1,19 @@
 import * as express from 'express';
 
 export function formatMiddleware(data: any, req: express.Request, res: express.Response, next: express.NextFunction) {
-  next({
+  let response: any = {
     success: true,
-    ...data
-  });
+  };
+
+  if (typeof data === 'string') {
+    response.message = data;
+  }
+  else {
+    response = {
+      ...response,
+      ...data
+    };
+  }
+
+  next(response);
 }

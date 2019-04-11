@@ -12,7 +12,7 @@ import { UserModel } from '../models/user.model';
 export class Database {
   private static connection: Connection = null;
 
-  public static async get() {
+  public static async get(): Promise<Connection> {
     if (this.connection === null) {
       await this.ready();
     }

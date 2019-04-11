@@ -5,18 +5,21 @@ export class UserModel {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @Column()
-  name: string;
-
-  @Column()
-  email: string;
+  @Column({
+    unique: true
+  })
+  username: string;
 
   @Column()
   passwordHash: string;
 
-  @Column()
+  @Column({
+    nullable: true
+  })
   token: string;
 
-  @Column()
+  @Column({
+    nullable: true
+  })
   expires: Date;
 }
