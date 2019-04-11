@@ -1,0 +1,31 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node -r ts-node/register index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/we-did-it-this-morning/api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/we-did-it-this-morning/api/issues"
+  },
+  "homepage": "https://github.com/we-did-it-this-morning/api#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "sqlite3": "^4.0.6",
+    "ts-node": "7.0.1",
+    "typeorm": "^0.2.16",
+    "typescript": "^3.4.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.16.1"
+  }
+}
