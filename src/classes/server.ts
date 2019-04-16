@@ -6,6 +6,7 @@ import { UpdateSymptomRoute } from '../routes/update-symptom.route';
 import { UpdateSymptomTypeRoute } from '../routes/update-symptom-type.route';
 import { SymptomTypeRoute } from '../routes/symptom-type.route';
 import { SymptomTypesRoute } from '../routes/symptom-types.route';
+import { SymptomsRoute } from '../routes/symptoms.route';
 
 import { authMiddleware } from './../middleware/auth.middleware';
 import * as express from 'express';
@@ -37,11 +38,14 @@ export class Server {
     [
       new LoginRoute(),
       new RegisterRoute(),
+      
       new SymptomRoute(),
+      new SymptomsRoute(),
       new UpdateSymptomRoute(),
       new UpdateSymptomTypeRoute(),
+      
       new SymptomTypeRoute(),
-      new SymptomTypesRoute()
+      new SymptomTypesRoute(),
     ].forEach(route => route.register(this.app));
 
     // register auth routes

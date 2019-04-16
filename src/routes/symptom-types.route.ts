@@ -13,10 +13,6 @@ export class SymptomTypesRoute extends Route {
   }
 
   public async routeFunction(params, db: Connection) {
-    const symptomTypes = db.getRepository(SymptomTypeModel);
-    
-    const symptomTypesList: SymptomTypeModel[] = await symptomTypes.find();
-    
-    return symptomTypesList;
+    return await db.getRepository(SymptomTypeModel).find();
   }
 }
