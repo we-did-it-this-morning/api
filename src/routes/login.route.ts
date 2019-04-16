@@ -4,6 +4,7 @@ import { Route } from '../classes/route';
 import { UserModel } from '../models/user.model';
 import * as bcrypt from 'bcrypt';
 import * as uuidv4 from 'uuid/v4';
+import { config } from '../config';
 
 export class LoginRoute extends Route {
   public getMethod() {
@@ -38,7 +39,7 @@ export class LoginRoute extends Route {
 
     const token = uuidv4();
     existingUser.token = token;
-    existingUser.expires = new Date(Date.now() + 86400000);
+    existingUser.expires = new Date(Date.now() + config.userExpiresTime);
 
     users.save(existingUser);
     
