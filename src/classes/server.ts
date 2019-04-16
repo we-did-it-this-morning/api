@@ -1,10 +1,10 @@
 import { RegisterRoute } from './../routes/register.route';
 import { LoginRoute } from './../routes/login.route';
 import { HomeRoute } from '../routes/home.route';
-import { SymptomRoute } from '../routes/symptoms/symptom.route';
-import { UpdateSymptomRoute } from '../routes/symptoms/update-symptom.route';
-import { UpdateSymptomTypeRoute } from '../routes/symptoms/update-symptom-type.route';
-import { SymptomTypeRoute } from '../routes/symptoms/symptom-type.route';
+import { SymptomRoute } from '../routes/symptom.route';
+import { UpdateSymptomRoute } from '../routes/update-symptom.route';
+import { UpdateSymptomTypeRoute } from '../routes/update-symptom-type.route';
+import { SymptomTypeRoute } from '../routes/symptom-type.route';
 
 import { authMiddleware } from './../middleware/auth.middleware';
 import * as express from 'express';

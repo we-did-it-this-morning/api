@@ -17,7 +17,7 @@ export class UpdateSymptomRoute extends Route {
       if (!params.name || !params.description || !params.symptomType || params.name.trim().length == 0 || params.description.trim().length == 0)
         throw 'Missing name, description or symptomType parameters';
         
-      const _id = (params.id) ? params.id : null;
+      const _id = (params.id != undefined && params.id !== null) ? params.id : null;
       const _name = params.name;
       const _description = params.description;
       const _symptomType = params.symptomType;

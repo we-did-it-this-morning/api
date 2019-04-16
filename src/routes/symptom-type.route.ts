@@ -13,7 +13,7 @@ export class SymptomTypeRoute extends Route {
   }
 
   public async routeFunction(params, db: Connection) {
-    if (!params.id)
+    if (params.id === null)
       throw 'Missing id parameter';
       
     const id = params.id;
