@@ -1,7 +1,7 @@
 import { Connection } from 'typeorm';
 import { HttpMethod } from './../classes/route';
 import { Route } from './../classes/route';
-import { SymptomTypeModel } from './../models/symptom-type.model';
+import { TreatmentTypeModel } from '../models/treatment-type.model';
 
 export class UpdateSymptomTypeRoute extends Route {
     public getMethod() {
@@ -19,47 +19,47 @@ export class UpdateSymptomTypeRoute extends Route {
       const _id = (params.id) ? params.id : null;
       const _name = params.name;
   
-      const symptomTypes = db.getRepository(SymptomTypeModel);
+      const treatmentTypes = db.getRepository(TreatmentTypeModel);
 
-      const symptomType: SymptomTypeModel = await symptomTypes.findOne({
+      const treatmentType: TreatmentTypeModel = await treatmentTypes.findOne({
         name: _name
       });
   
-      if (symptomType) {
-        throw 'A symptom type with that name already exist';
+      if (treatmentType) {
+        throw 'A treatment type with that name already exist';
       }   
 
       // Adding symptom type
       if (_id === null)
       {   
-        const new_symptomType: SymptomTypeModel = new SymptomTypeModel();
-        new_symptomType.name = _name;  
+        const new_treatmentType: TreatmentTypeModel = new TreatmentTypeModel();
+        new_treatmentType.name = _name;  
         
-        await symptomTypes.save(new_symptomType);
+        await treatmentTypes.save(new_treatmentType);
     
         return {
           ...params,
-          message: 'Added symptom type'
+          message: 'Added treatment type'
         };
       }
       // Updating symptom type
       else
       {
-        const symptomType: SymptomTypeModel = await symptomTypes.findOne({
+        const treatmentType: TreatmentTypeModel = await treatmentTypes.findOne({
           id: _id
         });
     
-        if (!symptomType) {
-          throw 'A symptom type with that id does not exist';
+        if (!treatmentType) {
+          throw 'A treatment type with that id does not exist';
         }
 
-        symptomType.name = _name;  
+        treatmentType.name = _name;  
         
-        await symptomTypes.save(symptomType);
+        await treatmentTypes.save(treatmentType);
     
         return {
           ...params,
-          message: 'Updated symptom type'
+          message: 'Updated treatment type'
         };
       }
     }
