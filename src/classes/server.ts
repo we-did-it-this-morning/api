@@ -1,9 +1,16 @@
 import { RegisterRoute } from './../routes/register.route';
 import { LoginRoute } from './../routes/login.route';
+import { HomeRoute } from '../routes/home.route';
+import { SymptomRoute } from '../routes/symptom.route';
+import { UpdateSymptomRoute } from '../routes/update-symptom.route';
+import { UpdateSymptomTypeRoute } from '../routes/update-symptom-type.route';
+import { SymptomTypeRoute } from '../routes/symptom-type.route';
+import { SymptomTypesRoute } from '../routes/symptom-types.route';
+import { SymptomsRoute } from '../routes/symptoms.route';
+
 import { authMiddleware } from './../middleware/auth.middleware';
 import * as express from 'express';
 import * as http from 'http';
-import { HomeRoute } from '../routes/home.route';
 import { errorMiddleware } from '../middleware/error.middleware';
 import { formatMiddleware } from '../middleware/format.middleware';
 
@@ -31,11 +38,19 @@ export class Server {
     [
       new LoginRoute(),
       new RegisterRoute(),
+      
+      new SymptomRoute(),
+      new SymptomsRoute(),
+      new UpdateSymptomRoute(),
+      new UpdateSymptomTypeRoute(),
+      
+      new SymptomTypeRoute(),
+      new SymptomTypesRoute(),
     ].forEach(route => route.register(this.app));
 
     // register auth routes
     [
-      new HomeRoute(),
+      new HomeRoute()
     ].forEach(route => route.register(this.app, [authMiddleware]));
 
     this.app.use(formatMiddleware);
