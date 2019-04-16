@@ -3,13 +3,13 @@ import { HttpMethod } from './../classes/route';
 import { Route } from './../classes/route';
 import { TreatmentTypeModel } from '../models/treatment-type.model';
 
-export class UpdateSymptomTypeRoute extends Route {
+export class UpdateTreatmentTypeRoute extends Route {
     public getMethod() {
       return HttpMethod.POST;
     }
   
     public endpointName() {
-      return '/update-symptom-type';
+      return '/update-treatment-type';
     }
   
     public async routeFunction(params, db: Connection) {
@@ -29,7 +29,7 @@ export class UpdateSymptomTypeRoute extends Route {
         throw 'A treatment type with that name already exist';
       }   
 
-      // Adding symptom type
+      // Adding treatment type
       if (_id === null)
       {   
         const new_treatmentType: TreatmentTypeModel = new TreatmentTypeModel();
@@ -42,7 +42,7 @@ export class UpdateSymptomTypeRoute extends Route {
           message: 'Added treatment type'
         };
       }
-      // Updating symptom type
+      // Updating treatment type
       else
       {
         const treatmentType: TreatmentTypeModel = await treatmentTypes.findOne({

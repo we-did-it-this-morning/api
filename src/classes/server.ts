@@ -7,6 +7,12 @@ import { UpdateSymptomTypeRoute } from '../routes/update-symptom-type.route';
 import { SymptomTypeRoute } from '../routes/symptom-type.route';
 import { SymptomTypesRoute } from '../routes/symptom-types.route';
 import { SymptomsRoute } from '../routes/symptoms.route';
+import { TreatmentRoute } from '../routes/treatment.route';
+import { TreatmentTypeRoute } from '../routes/treatment-type.route';
+import { TreatmentsRoute } from '../routes/treatments.route';
+import { TreatmentTypesRoute } from '../routes/treatment-types.route';
+import { UpdateTreatmentRoute } from '../routes/update-treatment.route';
+import { UpdateTreatmentTypeRoute } from '../routes/update-treatment-type.route';
 
 import { authMiddleware } from './../middleware/auth.middleware';
 import * as express from 'express';
@@ -42,10 +48,16 @@ export class Server {
       new SymptomRoute(),
       new SymptomsRoute(),
       new UpdateSymptomRoute(),
-      new UpdateSymptomTypeRoute(),
-      
+      new UpdateSymptomTypeRoute(),      
       new SymptomTypeRoute(),
       new SymptomTypesRoute(),
+
+      new TreatmentRoute(),
+      new TreatmentTypeRoute(),
+      new UpdateTreatmentRoute(),
+      new UpdateTreatmentTypeRoute(),
+      new TreatmentsRoute(),
+      new TreatmentTypesRoute()
     ].forEach(route => route.register(this.app));
 
     // register auth routes
