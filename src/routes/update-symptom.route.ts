@@ -1,5 +1,5 @@
 import { Connection } from 'typeorm';
-import { HttpMethod } from './../classes/route';
+import { HttpMethod } from '../classes/route';
 import { Route } from '../classes/route';
 import { SymptomModel } from '../models/symptom.model';
 import { SymptomTypeModel } from '../models/symptom-type.model';

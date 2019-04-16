@@ -14,7 +14,7 @@ export class UpdateSymptomTypeRoute extends Route {
   
     public async routeFunction(params, db: Connection) {
       if (!params.name || params.name.trim().length == 0)
-        throw 'Missing name, description or symptomType parameters';
+        throw 'Missing name parameter';
         
       const _id = (params.id) ? params.id : null;
       const _name = params.name;
