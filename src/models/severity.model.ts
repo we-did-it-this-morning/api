@@ -10,7 +10,7 @@ export class SeverityModel {
   @Column()
   description: string;
 
-  @ManyToMany(type => PreventionModel)
+  @ManyToMany(type => PreventionModel, preventionModel => preventionModel.severities)
   preventions: PreventionModel[];
 
   @OneToMany(type => MalariaTypeModel, m => m.severity)
