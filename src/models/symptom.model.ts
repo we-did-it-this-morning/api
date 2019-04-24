@@ -4,8 +4,8 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne } from "t
 
 @Entity()
 export class SymptomModel {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+  @PrimaryGeneratedColumn("increment")
+  id: number;
 
   @Column()
   name: string;

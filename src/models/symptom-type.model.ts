@@ -3,8 +3,8 @@ import { SymptomModel } from "./symptom.model";
 
 @Entity()
 export class SymptomTypeModel {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+  @PrimaryGeneratedColumn("increment")
+  id: number;
 
   @Column()
   name: string;

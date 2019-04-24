@@ -4,8 +4,8 @@ import { TreatmentTypeModel } from './treatment-type.model';
 
 @Entity()
 export class TreatmentModel {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+  @PrimaryGeneratedColumn("increment")
+  id: number;
 
   @Column()
   name: string;
