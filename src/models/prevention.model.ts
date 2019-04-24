@@ -3,8 +3,8 @@ import { ManyToMany } from 'typeorm';
 import { PrimaryGeneratedColumn, Column, Entity } from 'typeorm';
 @Entity()
 export class PreventionModel {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+  @PrimaryGeneratedColumn("increment")
+  id: number;
 
   @Column()
   name: string;

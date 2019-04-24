@@ -3,8 +3,8 @@ import { MalariaTypeModel } from "./malaria-type.model";
 
 @Entity()
 export class CountryModel {
-  @PrimaryGeneratedColumn("uuid")
-  id: string;
+  @PrimaryGeneratedColumn("increment")
+  id: number;
 
   @Column()
   name: string;

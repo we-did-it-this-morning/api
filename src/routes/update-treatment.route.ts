@@ -29,7 +29,7 @@ export class UpdateTreatmentRoute extends Route {
         name: _name
       });
   
-      if (treatments) {
+      if (treatment) {
         throw 'A treatment with that name already exist';
       } 
 
