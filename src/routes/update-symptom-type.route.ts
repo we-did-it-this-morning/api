@@ -1,7 +1,7 @@
 import { Connection } from 'typeorm';
 import { HttpMethod } from './../classes/route';
-import { Route } from '../classes/route';
-import { SymptomTypeModel } from '../models/symptom-type.model';
+import { Route } from './../classes/route';
+import { SymptomTypeModel } from './../models/symptom-type.model';
 
 export class UpdateSymptomTypeRoute extends Route {
     public getMethod() {
@@ -16,7 +16,7 @@ export class UpdateSymptomTypeRoute extends Route {
       if (!params.name || params.name.trim().length == 0)
         throw 'Missing name parameter';
         
-      const _id = (params.id != undefined && params.id !== null) ? params.id : null;
+      const _id = (params.id) ? params.id : null;
       const _name = params.name;
   
       const symptomTypes = db.getRepository(SymptomTypeModel);

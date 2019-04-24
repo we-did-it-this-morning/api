@@ -1,15 +1,15 @@
 import { Connection } from 'typeorm';
 import { HttpMethod } from './../classes/route';
 import { Route } from './../classes/route';
-import { SymptomModel } from './../models/symptom.model';
+import { TreatmentModel } from './../models/treatment.model';
 
-export class SymptomRoute extends Route {
+export class TreatmentRoute extends Route {
   public getMethod() {
     return HttpMethod.GET;
   }
 
   public endpointName() {
-    return '/symptom';
+    return '/treatment';
   }
 
   public async routeFunction(params, db: Connection) {
@@ -18,18 +18,18 @@ export class SymptomRoute extends Route {
       
     const id = params.id;
 
-    const symptoms = db.getRepository(SymptomModel);
+    const treatments = db.getRepository(TreatmentModel);
     
-    const symptom: SymptomModel = await symptoms.findOne({
+    const treatment: TreatmentModel = await treatments.findOne({
       id: id
     });
 
-    console.log(symptom);
+    console.log(treatment);
 
-    if (!symptom) {
-      throw 'A symptom with that id does not exist';
+    if (!treatment) {
+      throw 'A treatment with that id does not exist';
     }
 
-    return symptom;
+    return treatment;
   }
 }
