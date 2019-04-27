@@ -19,6 +19,9 @@ import * as express from 'express';
 import * as http from 'http';
 import { errorMiddleware } from '../middleware/error.middleware';
 import { formatMiddleware } from '../middleware/format.middleware';
+import { CountryRoute } from '../routes/country.route';
+import { CountriesRoute } from '../routes/countries.route';
+import { UpdateCountryRoute } from '../routes/update-country.route';
 
 export class Server {
   protected static instance: Server = null;
@@ -57,7 +60,11 @@ export class Server {
       new UpdateTreatmentRoute(),
       new UpdateTreatmentTypeRoute(),
       new TreatmentsRoute(),
-      new TreatmentTypesRoute()
+      new TreatmentTypesRoute(),
+
+      new CountryRoute(),
+      new CountriesRoute(),
+      new UpdateCountryRoute(),
     ].forEach(route => route.register(this.app));
 
     // register auth routes
