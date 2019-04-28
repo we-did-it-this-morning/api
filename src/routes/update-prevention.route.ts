@@ -3,13 +3,13 @@ import { Connection } from 'typeorm';
 import { PreventionModel } from '../models/prevention.model';
 import { SeverityModel } from '../models/severity.model';
 export class UpdatePreventionRoute extends Route {
-  getMethod() {
+  public getMethod() {
     return HttpMethod.POST;
   }
-  endpointName() {
+  public endpointName() {
     return '/update-prevention';
   }
-  async routeFunction(params, db: Connection) {
+  public async routeFunction(params, db: Connection) {
     console.log(params);
     if (!params.name || !params.description || !params.severities) {
       throw 'Missing parameters';

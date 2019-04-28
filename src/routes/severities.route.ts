@@ -3,13 +3,13 @@ import { Connection } from 'typeorm';
 import { SeverityModel } from '../models/severity.model';
 
 export class SeveritiesRoute extends Route {
-  getMethod() {
+  public getMethod() {
     return HttpMethod.GET;
   }
-  endpointName() {
+  public endpointName() {
     return '/severities';
   }
-  async routeFunction(params, db: Connection) {
+  public async routeFunction(params, db: Connection) {
    return await db.getRepository(SeverityModel).find({
      loadRelationIds: true,
    });

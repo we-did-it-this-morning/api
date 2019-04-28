@@ -3,13 +3,13 @@ import { Connection } from 'typeorm';
 import { SeverityModel } from '../models/severity.model';
 
 export class UpdateSeverityRoute extends Route {
-  getMethod() {
+  public getMethod() {
     return HttpMethod.POST;
-  }
-  endpointName() {
+  }  
+  public endpointName() {
     return '/update-severity';
   }
-  async routeFunction(params, db: Connection) {
+  public async routeFunction(params, db: Connection) {
     if (!params.level || !params.description) {
       throw 'Parameters not supplied';
     }

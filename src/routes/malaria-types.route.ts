@@ -2,10 +2,10 @@ import { Route, HttpMethod } from '../classes/route';
 import { Connection } from 'typeorm';
 import { MalariaTypeModel } from '../models/malaria-type.model';
 export class MalariaTypesRoute extends Route {
-  getMethod() {
+  public getMethod() {
     return HttpMethod.GET;
   }
-  endpointName() {
+  public endpointName() {
     return '/malaria-types';
   }
   public async routeFunction(params, db: Connection) {

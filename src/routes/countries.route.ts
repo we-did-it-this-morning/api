@@ -2,13 +2,13 @@ import { Route, HttpMethod } from '../classes/route';
 import { Connection } from 'typeorm';
 import { CountryModel } from '../models/country.model';
 export class CountriesRoute extends Route {
-  getMethod() {
+  public getMethod() {
     return HttpMethod.GET;
   }
-  endpointName() {
+  public endpointName() {
     return '/countries';
   }
-  async routeFunction(params, db: Connection) {
+  public async routeFunction(params, db: Connection) {
    return await db.getRepository(CountryModel).find();
   }
 }

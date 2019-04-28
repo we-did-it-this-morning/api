@@ -2,13 +2,13 @@ import { Route, HttpMethod } from '../classes/route';
 import { Connection } from 'typeorm';
 import { CountryModel } from '../models/country.model';
 export class CountryRoute extends Route {
-  getMethod() {
+  public getMethod() {
     return HttpMethod.GET;
   }
-  endpointName() {
+  public endpointName() {
     return '/country';
   }
-  async routeFunction(params, db: Connection) {
+  public async routeFunction(params, db: Connection) {
     if (!params.id) {
       throw 'Id not supplied';
     }
