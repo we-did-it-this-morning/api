@@ -8,7 +8,7 @@ export class MalariaTypesRoute extends Route {
   endpointName() {
     return '/malaria-types';
   }
-  async routeFunction(params, db: Connection) {
+  public async routeFunction(params, db: Connection) {
    return await db.getRepository(MalariaTypeModel).find();
   }
 }
