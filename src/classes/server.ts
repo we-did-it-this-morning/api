@@ -19,6 +19,12 @@ import * as express from 'express';
 import * as http from 'http';
 import { errorMiddleware } from '../middleware/error.middleware';
 import { formatMiddleware } from '../middleware/format.middleware';
+import { SeveritiesRoute } from '../routes/severities.route';
+import { UpdateSeverityRoute } from '../routes/update-serverity.route';
+import { PreventionRoute } from '../routes/prevention.route';
+import { UpdatePreventionRoute } from '../routes/update-prevention.route';
+import { SeverityRoute } from '../routes/severity.route';
+import { PreventionsRoute } from '../routes/preventions.route';
 import { CountryRoute } from '../routes/country.route';
 import { CountriesRoute } from '../routes/countries.route';
 import { UpdateCountryRoute } from '../routes/update-country.route';
@@ -61,6 +67,14 @@ export class Server {
       new UpdateTreatmentTypeRoute(),
       new TreatmentsRoute(),
       new TreatmentTypesRoute(),
+
+      new SeverityRoute(),
+      new SeveritiesRoute(),
+      new UpdateSeverityRoute(),
+
+      new PreventionRoute(),
+      new PreventionsRoute(),
+      new UpdatePreventionRoute(),
 
       new CountryRoute(),
       new CountriesRoute(),
