@@ -25,6 +25,9 @@ import { PreventionRoute } from '../routes/prevention.route';
 import { UpdatePreventionRoute } from '../routes/update-prevention.route';
 import { SeverityRoute } from '../routes/severity.route';
 import { PreventionsRoute } from '../routes/preventions.route';
+import { CountryRoute } from '../routes/country.route';
+import { CountriesRoute } from '../routes/countries.route';
+import { UpdateCountryRoute } from '../routes/update-country.route';
 
 export class Server {
   protected static instance: Server = null;
@@ -72,6 +75,10 @@ export class Server {
       new PreventionRoute(),
       new PreventionsRoute(),
       new UpdatePreventionRoute(),
+
+      new CountryRoute(),
+      new CountriesRoute(),
+      new UpdateCountryRoute(),
     ].forEach(route => route.register(this.app));
 
     // register auth routes
