@@ -144,6 +144,19 @@ Otherwise
                 <td><input type='checkbox' checked disabled></td>
             </tr>
             <tr>
+                    <td>POST</td>
+                    <td>/delete-country</td>
+                    <td>
+<pre><code>{
+    id: number               
+}</code></pre>
+                    </td>
+                    <td>
+<pre><code>NULL</code></pre>
+                    </td>
+                    <td><input type='checkbox' checked disabled></td>
+                </tr>
+            <tr>
                 <td>GET</td>
                 <td>/countries</td>
                 <td>
@@ -187,17 +200,25 @@ Otherwise
                 <td>/update-severity</td>
                 <td>
 <pre><code>{
-    level?: number;
-    description: string;
-    preventions: number[];              
+    level: number,
+    description: string,
+    preventions: number[]              
 }</code></pre>
                 </td>
                 <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td><input type='checkbox' checked disabled></td>
+            </tr><tr>
+                <td>POST</td>
+                <td>/delete-severity</td>
+                <td>
 <pre><code>{
-    level: number;
-    description: string;
-    preventions: number[];               
+    level: number             
 }</code></pre>
+                </td>
+                <td>
+<pre><code>NULL</code></pre>
                 </td>
                 <td><input type='checkbox' checked disabled></td>
             </tr>
@@ -210,9 +231,9 @@ Otherwise
                 <td>
 <pre><code>[
     {
-        level: number;
-        description: string;
-        preventions: number[];  
+        level: number,
+        description: string,
+        preventions: number[]  
     },
     ...
 ]</code></pre>
@@ -229,9 +250,9 @@ Otherwise
                 </td>
                 <td>
 <pre><code>{
-    level: number;
-    description: string;
-    preventions: number[];                  
+    level: number,
+    description: string,
+    preventions: number[]                
 }</code></pre>
                 </td>
                 <td><input type='checkbox' disabled></td>
@@ -245,9 +266,22 @@ Otherwise
                 <td>/update-prevention</td>
                 <td>
 <pre><code>{
-    id?: number;
-    name: string;
-    description: string;         
+    id?: number,
+    name: string,
+    description: string         
+}</code></pre>
+                </td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td><input type='checkbox' checked disabled></td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/delete-prevention</td>
+                <td>
+<pre><code>{
+    id: number       
 }</code></pre>
                 </td>
                 <td>
@@ -264,9 +298,9 @@ Otherwise
                 <td>
 <pre><code>[
     {
-        id: number;
-        name: string;
-        description: string; 
+        id: number,
+        name: string,
+        description: string
     },
     ...
 ]</code></pre>
@@ -283,9 +317,9 @@ Otherwise
                 </td>
                 <td>
 <pre><code>{
-    id: number;
-    name: string;
-    description: string;               
+    id: number,
+    name: string,
+    description: string              
 }</code></pre>
                 </td>
                 <td><input type='checkbox' disabled></td>
@@ -294,17 +328,31 @@ Otherwise
             <tr class='blank'><td></td></tr>
             <tr>
                 <th colspan='5'>Malaria Types</th>
-            </tr><tr>
+            </tr>
+            <tr>
                 <td>POST</td>
                 <td>/update-malaria-type</td>
                 <td>
 <pre><code>{
-    id?: number;
-    name: string;
-    description: string;
-    severity: number;
-    treatments: number[];
-    symptoms: number[];        
+    id?: number,
+    name: string,
+    description: string,
+    severity: number,
+    treatments: number[],
+    symptoms: number[]     
+}</code></pre>
+                </td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td><input type='checkbox' checked disabled></td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/delete-malaria-type</td>
+                <td>
+<pre><code>{
+    id: number    
 }</code></pre>
                 </td>
                 <td>
@@ -321,12 +369,12 @@ Otherwise
                 <td>
 <pre><code>[
     {
-        id: number;
-        name: string;
-        description: string;
-        severity: number;
-        treatments: number[];
-        symptoms: number[];    
+        id: number,
+        name: string,
+        description: string,
+        severity: number,
+        treatments: number[],
+        symptoms: number[]   
     },
     ...
 ]</code></pre>
@@ -338,17 +386,17 @@ Otherwise
                 <td>/malaria-type</td>
                 <td>
 <pre><code>{
-    id: number;              
+    id: number            
 }</code></pre>
                 </td>
                 <td>
 <pre><code>{
-    id?: number;
-    name: string;
-    description: string;
-    severity: number;
-    treatments: number[];
-    symptoms: number[];                 
+    id: number,
+    name: string,
+    description: string,
+    severity: number,
+    treatments: number[],
+    symptoms: number[]                    
 }</code></pre>
                 </td>
                 <td><input type='checkbox' disabled></td>
@@ -363,10 +411,23 @@ Otherwise
                 <td>/update-treatment</td>
                 <td>
 <pre><code>{
-    id?: number;
-    name: string;
-    description: string;
-    treatmentType: number;       
+    id?: number,
+    name: string,
+    description: string,
+    treatmentType: number    
+}</code></pre>
+                </td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td><input type='checkbox' checked disabled></td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/delete-treatment</td>
+                <td>
+<pre><code>{
+    id: number    
 }</code></pre>
                 </td>
                 <td>
@@ -383,10 +444,10 @@ Otherwise
                 <td>
 <pre><code>[
     {
-        id: number;
-        name: string;
-        description: string;
-        treatmentType: number;   
+        id: number,
+        name: string,
+        description: string,
+        treatmentType: number
     },
     ...
 ]</code></pre>
@@ -398,15 +459,15 @@ Otherwise
                 <td>/treatment</td>
                 <td>
 <pre><code>{
-    id: number;              
+    id: number            
 }</code></pre>
                 </td>
                 <td>
 <pre><code>{
-    id: number;
-    name: string;
-    description: string;
-    treatmentType: number;               
+    id: number,
+    name: string,
+    description: string,
+    treatmentType: number               
 }</code></pre>
                 </td>
                 <td><input type='checkbox' disabled></td>
@@ -416,8 +477,21 @@ Otherwise
                 <td>/update-treatment-type</td>
                 <td>
 <pre><code>{
-    id?: number;
-    name: string;         
+    id?: number,
+    name: string       
+}</code></pre>
+                </td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td><input type='checkbox' checked disabled></td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/delete-treatment-type</td>
+                <td>
+<pre><code>{
+    id: number      
 }</code></pre>
                 </td>
                 <td>
@@ -434,8 +508,8 @@ Otherwise
                 <td>
 <pre><code>[
     {
-        id: number;
-        name: string;
+        id: number,
+        name: string
     },
     ...
 ]</code></pre>
@@ -447,13 +521,13 @@ Otherwise
                 <td>/treatment-type</td>
                 <td>
 <pre><code>{
-    id: number;              
+    id: number             
 }</code></pre>
                 </td>
                 <td>
 <pre><code>{
-    id: number;
-    name: string;           
+    id: number,
+    name: string          
 }</code></pre>
                 </td>
                 <td><input type='checkbox' disabled></td>
@@ -468,10 +542,23 @@ Otherwise
                     <td>/update-symptom</td>
                     <td>
 <pre><code>{
-    id?: number;
-    name: string;
-    description: string;
-    symptomType: number;       
+    id?: number,
+    name: string,
+    description: string,
+    symptomType: number      
+}</code></pre>
+                    </td>
+                    <td>
+    <pre><code>NULL</code></pre>
+                    </td>
+                    <td><input type='checkbox' checked disabled></td>
+                </tr>
+                <tr>
+                    <td>POST</td>
+                    <td>/delete-symptom</td>
+                    <td>
+<pre><code>{
+    id: number    
 }</code></pre>
                     </td>
                     <td>
@@ -488,10 +575,10 @@ Otherwise
                     <td>
 <pre><code>[
     {
-        id: number;
-        name: string;
-        description: string;
-        symptomType: number;   
+        id: number,
+        name: string,
+        description: string,
+        symptomType: number
     },
     ...
 ]</code></pre>
@@ -508,10 +595,10 @@ Otherwise
                     </td>
                     <td>
     <pre><code>{
-        id: number;
-        name: string;
-        description: string;
-        symptomType: number;               
+        id: number,
+        name: string,
+        description: string,
+        symptomType: number               
     }</code></pre>
                     </td>
                     <td><input type='checkbox' disabled></td>
@@ -521,8 +608,21 @@ Otherwise
                     <td>/update-symptom-type</td>
                     <td>
 <pre><code>{
-    id?: number;
-    name: string;         
+    id?: number,
+    name: string         
+}</code></pre>
+                    </td>
+                    <td>
+<pre><code>NULL</code></pre>
+                    </td>
+                    <td><input type='checkbox' checked disabled></td>
+                </tr>
+                <tr>
+                    <td>POST</td>
+                    <td>/delete-symptom-type</td>
+                    <td>
+<pre><code>{
+    id: number       
 }</code></pre>
                     </td>
                     <td>
@@ -539,8 +639,8 @@ Otherwise
                     <td>
 <pre><code>[
     {
-        id: number;
-        name: string;
+        id: number,
+        name: string
     },
     ...
 ]</code></pre>
@@ -552,13 +652,13 @@ Otherwise
                     <td>/symptom-type</td>
                     <td>
 <pre><code>{
-    id: number;              
+    id: number             
 }</code></pre>
                     </td>
                     <td>
 <pre><code>{
-    id: number;
-    name: string;           
+    id: number,
+    name: string          
 }</code></pre>
                     </td>
                     <td><input type='checkbox' disabled></td>
