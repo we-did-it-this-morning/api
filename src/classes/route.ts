@@ -19,9 +19,16 @@ export abstract class Route {
     };
 
     try {
-      res.json(await this.routeFunction(params, await Database.get()));
+      res.json({
+        success: true,
+        data: await this.routeFunction(params, await Database.get())
+      });
     } catch (e) {
-      next(e);
+      console.error(e);
+      next({
+        success: false,
+        message: e,
+      });
     }
   }
 

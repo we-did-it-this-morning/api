@@ -18,7 +18,6 @@ import { authMiddleware } from './../middleware/auth.middleware';
 import * as express from 'express';
 import * as http from 'http';
 import { errorMiddleware } from '../middleware/error.middleware';
-import { formatMiddleware } from '../middleware/format.middleware';
 import { SeveritiesRoute } from '../routes/severities.route';
 import { UpdateSeverityRoute } from '../routes/update-serverity.route';
 import { PreventionRoute } from '../routes/prevention.route';
@@ -118,7 +117,6 @@ export class Server {
       new DeleteMalariaTypeRoute(),
     ].forEach(route => route.register(this.app, [authMiddleware]));
 
-    this.app.use(formatMiddleware);
     this.app.use(errorMiddleware);
 
     return new Promise(resolve => {
