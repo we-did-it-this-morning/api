@@ -19,8 +19,10 @@
   },
   "homepage": "https://github.com/we-did-it-this-morning/api#readme",
   "dependencies": {
+    "@types/node": "^11.13.8",
     "bcrypt": "^3.0.5",
     "express": "^4.16.4",
+    "pg": "^7.10.0",
     "sqlite3": "^4.0.6",
     "ts-node": "7.0.1",
     "typeorm": "^0.2.16",
