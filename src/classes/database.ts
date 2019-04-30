@@ -9,6 +9,7 @@ import { createConnection, Connection } from "typeorm";
 import { TreatmentModel } from '../models/treatment.model';
 import { UserModel } from '../models/user.model';
 import { config } from '../config';
+import { UserManager } from './user-manager';
 
 export class Database {
   private static connection: Connection = null;
@@ -62,6 +63,15 @@ export class Database {
           entities,
           synchronize: true
         });
+      }
+
+      // add our initial user if they do not exist
+      const users = this.connection.getRepository(UserModel);
+      if (!await users.findOne({
+        username: 'admin'
+      })) {
+        const user = UserManager.generateUserFromUsernamePassword('admin', '1234');
+        await users.save(user);
       }
 
       Database.hasInitialised = true;
