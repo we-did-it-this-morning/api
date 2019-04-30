@@ -65,7 +65,9 @@
                 <td colspan='5'>                    
 <pre><code>POST type must be application/json
 
-All routes that needs authentication, requires token: '...' to be added to what is expected    
+All routes that needs authentication, require the token appended to the url in the GET parameters:
+/update-country?token=abcdef    
+(Put the other expected data in body)
 
 If an error occurs the following will be returned:
 {

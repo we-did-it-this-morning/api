@@ -1,5 +1,6 @@
 import { HttpMethod } from './../classes/route';
 import { Route } from '../classes/route';
+const fs = require('fs');
 
 export class HomeRoute extends Route {
   public getMethod() {
@@ -11,8 +12,7 @@ export class HomeRoute extends Route {
   }
 
   public async routeFunction(params, db) {
-    return {
-      message: 'Hello, there'
-    };
+    let html = fs.readFileSync('../views/index.html');
+    return html;
   }
 }
