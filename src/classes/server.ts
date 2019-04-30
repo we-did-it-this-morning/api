@@ -31,6 +31,7 @@ import { UpdateCountryRoute } from '../routes/update-country.route';
 import { MalariaTypeRoute } from '../routes/malaria-type.route';
 import { MalariaTypesRoute } from '../routes/malaria-types.route';
 import { UpdateMalariaTypeRoute } from '../routes/update-malaria-type.route';
+import { UpdatePasswordRoute } from '../routes/update-password.route';
 
 export class Server {
   protected static instance: Server = null;
@@ -54,43 +55,46 @@ export class Server {
 
     // register non auth routes
     [
+      new HomeRoute(),
       new LoginRoute(),
-      new RegisterRoute(),
       
       new SymptomRoute(),
       new SymptomsRoute(),
-      new UpdateSymptomRoute(),
-      new UpdateSymptomTypeRoute(),      
       new SymptomTypeRoute(),
       new SymptomTypesRoute(),
 
       new TreatmentRoute(),
       new TreatmentTypeRoute(),
-      new UpdateTreatmentRoute(),
-      new UpdateTreatmentTypeRoute(),
       new TreatmentsRoute(),
       new TreatmentTypesRoute(),
 
       new SeverityRoute(),
       new SeveritiesRoute(),
-      new UpdateSeverityRoute(),
 
       new PreventionRoute(),
       new PreventionsRoute(),
-      new UpdatePreventionRoute(),
 
       new CountryRoute(),
       new CountriesRoute(),
-      new UpdateCountryRoute(),
 
       new MalariaTypeRoute(),
       new MalariaTypesRoute(),
-      new UpdateMalariaTypeRoute(),
+      
     ].forEach(route => route.register(this.app));
 
     // register auth routes
     [
-      new HomeRoute()
+      new RegisterRoute(),
+      new UpdatePasswordRoute(),
+
+      new UpdateSymptomRoute(),
+      new UpdateSymptomTypeRoute(),
+      new UpdateTreatmentRoute(),
+      new UpdateTreatmentTypeRoute(),
+      new UpdateSeverityRoute(),
+      new UpdatePreventionRoute(),
+      new UpdateCountryRoute(),
+      new UpdateMalariaTypeRoute(),
     ].forEach(route => route.register(this.app, [authMiddleware]));
 
     this.app.use(formatMiddleware);
