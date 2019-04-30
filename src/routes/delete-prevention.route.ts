@@ -1,12 +1,12 @@
 import { Route, HttpMethod } from '../classes/route';
 import { Connection } from 'typeorm';
 import { PreventionModel } from '../models/prevention.model';
-export class PreventionRoute extends Route {
+export class DeletePreventionRoute extends Route {
   public getMethod() {
-    return HttpMethod.GET;
+    return HttpMethod.POST;
   }
   public endpointName() {
-    return '/prevention';
+    return '/delete-prevention';
   }
   public async routeFunction(params, db: Connection) {
     if (!params.id) {
@@ -24,6 +24,8 @@ export class PreventionRoute extends Route {
     }
 
     console.log(prevention, prevention.severities);
+
+    await db.getRepository(PreventionModel).delete(prevention);
     
     return true;
   }

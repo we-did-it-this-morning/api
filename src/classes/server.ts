@@ -32,6 +32,14 @@ import { MalariaTypeRoute } from '../routes/malaria-type.route';
 import { MalariaTypesRoute } from '../routes/malaria-types.route';
 import { UpdateMalariaTypeRoute } from '../routes/update-malaria-type.route';
 import { UpdatePasswordRoute } from '../routes/update-password.route';
+import { DeleteSymptomRoute } from '../routes/delete-symptom.route';
+import { DeleteSymptomTypeRoute } from '../routes/delete-symptom-type.route';
+import { DeleteTreatmentRoute } from '../routes/delete-treatment';
+import { DeleteTreatmentTypeRoute } from '../routes/delete-treatment-type.route';
+import { DeleteSeverityRoute } from '../routes/delete-severity.route';
+import { DeletePreventionRoute } from '../routes/delete-prevention.route';
+import { DeleteCountryRoute } from '../routes/delete-country.route';
+import { DeleteMalariaTypeRoute } from '../routes/delete-malaria-type.route';
 
 export class Server {
   protected static instance: Server = null;
@@ -88,13 +96,26 @@ export class Server {
       new UpdatePasswordRoute(),
 
       new UpdateSymptomRoute(),
+      new DeleteSymptomRoute(),
       new UpdateSymptomTypeRoute(),
+      new DeleteSymptomTypeRoute(),
+
       new UpdateTreatmentRoute(),
+      new DeleteTreatmentRoute(),
       new UpdateTreatmentTypeRoute(),
+      new DeleteTreatmentTypeRoute(),
+
       new UpdateSeverityRoute(),
+      new DeleteSeverityRoute(),
+
       new UpdatePreventionRoute(),
+      new DeletePreventionRoute(),
+      
       new UpdateCountryRoute(),
+      new DeleteCountryRoute(),
+
       new UpdateMalariaTypeRoute(),
+      new DeleteMalariaTypeRoute(),
     ].forEach(route => route.register(this.app, [authMiddleware]));
 
     this.app.use(formatMiddleware);
