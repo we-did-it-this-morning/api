@@ -2,13 +2,13 @@ import { Route, HttpMethod } from '../classes/route';
 import { Connection } from 'typeorm';
 import { PreventionModel } from '../models/prevention.model';
 export class PreventionRoute extends Route {
-  getMethod() {
+  public getMethod() {
     return HttpMethod.GET;
   }
-  endpointName() {
+  public endpointName() {
     return '/prevention';
   }
-  async routeFunction(params, db: Connection) {
+  public async routeFunction(params, db: Connection) {
     if (!params.id) {
       throw 'Id not supplied';
     }

@@ -2,13 +2,13 @@ import { Route, HttpMethod } from '../classes/route';
 import { Connection } from 'typeorm';
 import { CountryModel } from '../models/country.model';
 export class UpdateCountryRoute extends Route {
-  getMethod() {
+  public getMethod() {
     return HttpMethod.POST;
   }
-  endpointName() {
+  public endpointName() {
     return '/update-country';
   }
-  async routeFunction(params, db: Connection) {
+  public async routeFunction(params, db: Connection) {
     if (!params.name) {
       throw 'Name not supplied';
     }

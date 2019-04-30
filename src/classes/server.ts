@@ -28,6 +28,9 @@ import { PreventionsRoute } from '../routes/preventions.route';
 import { CountryRoute } from '../routes/country.route';
 import { CountriesRoute } from '../routes/countries.route';
 import { UpdateCountryRoute } from '../routes/update-country.route';
+import { MalariaTypeRoute } from '../routes/malaria-type.route';
+import { MalariaTypesRoute } from '../routes/malaria-types.route';
+import { UpdateMalariaTypeRoute } from '../routes/update-malaria-type.route';
 
 export class Server {
   protected static instance: Server = null;
@@ -79,6 +82,10 @@ export class Server {
       new CountryRoute(),
       new CountriesRoute(),
       new UpdateCountryRoute(),
+
+      new MalariaTypeRoute(),
+      new MalariaTypesRoute(),
+      new UpdateMalariaTypeRoute(),
     ].forEach(route => route.register(this.app));
 
     // register auth routes
