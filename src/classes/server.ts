@@ -18,7 +18,6 @@ import { authMiddleware } from './../middleware/auth.middleware';
 import * as express from 'express';
 import * as http from 'http';
 import { errorMiddleware } from '../middleware/error.middleware';
-import { formatMiddleware } from '../middleware/format.middleware';
 import { SeveritiesRoute } from '../routes/severities.route';
 import { UpdateSeverityRoute } from '../routes/update-serverity.route';
 import { PreventionRoute } from '../routes/prevention.route';
@@ -31,6 +30,15 @@ import { UpdateCountryRoute } from '../routes/update-country.route';
 import { MalariaTypeRoute } from '../routes/malaria-type.route';
 import { MalariaTypesRoute } from '../routes/malaria-types.route';
 import { UpdateMalariaTypeRoute } from '../routes/update-malaria-type.route';
+import { UpdatePasswordRoute } from '../routes/update-password.route';
+import { DeleteSymptomRoute } from '../routes/delete-symptom.route';
+import { DeleteSymptomTypeRoute } from '../routes/delete-symptom-type.route';
+import { DeleteTreatmentRoute } from '../routes/delete-treatment';
+import { DeleteTreatmentTypeRoute } from '../routes/delete-treatment-type.route';
+import { DeleteSeverityRoute } from '../routes/delete-severity.route';
+import { DeletePreventionRoute } from '../routes/delete-prevention.route';
+import { DeleteCountryRoute } from '../routes/delete-country.route';
+import { DeleteMalariaTypeRoute } from '../routes/delete-malaria-type.route';
 
 export class Server {
   protected static instance: Server = null;
@@ -54,46 +62,61 @@ export class Server {
 
     // register non auth routes
     [
+      new HomeRoute(),
       new LoginRoute(),
-      new RegisterRoute(),
       
       new SymptomRoute(),
       new SymptomsRoute(),
-      new UpdateSymptomRoute(),
-      new UpdateSymptomTypeRoute(),      
       new SymptomTypeRoute(),
       new SymptomTypesRoute(),
 
       new TreatmentRoute(),
       new TreatmentTypeRoute(),
-      new UpdateTreatmentRoute(),
-      new UpdateTreatmentTypeRoute(),
       new TreatmentsRoute(),
       new TreatmentTypesRoute(),
 
       new SeverityRoute(),
       new SeveritiesRoute(),
-      new UpdateSeverityRoute(),
 
       new PreventionRoute(),
       new PreventionsRoute(),
-      new UpdatePreventionRoute(),
 
       new CountryRoute(),
       new CountriesRoute(),
-      new UpdateCountryRoute(),
 
       new MalariaTypeRoute(),
       new MalariaTypesRoute(),
-      new UpdateMalariaTypeRoute(),
+      
     ].forEach(route => route.register(this.app));
 
     // register auth routes
     [
-      new HomeRoute()
+      new RegisterRoute(),
+      new UpdatePasswordRoute(),
+
+      new UpdateSymptomRoute(),
+      new DeleteSymptomRoute(),
+      new UpdateSymptomTypeRoute(),
+      new DeleteSymptomTypeRoute(),
+
+      new UpdateTreatmentRoute(),
+      new DeleteTreatmentRoute(),
+      new UpdateTreatmentTypeRoute(),
+      new DeleteTreatmentTypeRoute(),
+
+      new UpdateSeverityRoute(),
+      new DeleteSeverityRoute(),
+
+      new UpdatePreventionRoute(),
+      new DeletePreventionRoute(),
+      
+      new UpdateCountryRoute(),
+      new DeleteCountryRoute(),
+
+      new UpdateMalariaTypeRoute(),
+      new DeleteMalariaTypeRoute(),
     ].forEach(route => route.register(this.app, [authMiddleware]));
 
-    this.app.use(formatMiddleware);
     this.app.use(errorMiddleware);
 
     return new Promise(resolve => {
