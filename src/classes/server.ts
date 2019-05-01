@@ -41,6 +41,8 @@ import { DeleteMalariaTypeRoute } from '../routes/delete-malaria-type.route';
 
 import * as path from 'path';
 
+import * as cors from 'cors';
+
 export class Server {
   protected static instance: Server = null;
 
@@ -58,6 +60,8 @@ export class Server {
 
   public start(port) {
     this.app = express();
+
+    this.app.use(cors());
 
     this.app.use(express.json());
 
