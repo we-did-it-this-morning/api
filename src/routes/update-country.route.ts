@@ -22,7 +22,7 @@ export class UpdateCountryRoute extends Route {
     console.log('id', params.id);
 
     let country: CountryModel;
-    if (!params.id) {
+    if (!!params.id) {
       country = await countries.findOne({
         id: params.id
       });
