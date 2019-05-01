@@ -1,6 +1,9 @@
 import { Route, HttpMethod } from '../classes/route';
 import { Connection } from 'typeorm';
 import { CountryModel } from '../models/country.model';
+import { MalariaTypeModel } from '../models/malaria-type.model';
+
+
 export class UpdateCountryRoute extends Route {
   public getMethod() {
     return HttpMethod.POST;
@@ -9,16 +12,17 @@ export class UpdateCountryRoute extends Route {
     return '/update-country';
   }
   public async routeFunction(params, db: Connection) {
-    if (!params.name) {
-      throw 'Name not supplied';
+    if (!params.name || !params.malariaTypes) {
+      throw 'Name or malariaTypes not supplied';
     }
 
     const countries = db.getRepository(CountryModel);
+    const malariaTypes = db.getRepository(MalariaTypeModel);
 
     console.log('id', params.id);
 
     let country: CountryModel;
-    if (!!params.id) {
+    if (!params.id) {
       country = await countries.findOne({
         id: params.id
       });
@@ -32,6 +36,7 @@ export class UpdateCountryRoute extends Route {
     }
 
     country.name = params.name;
+    country.malariaTypes = await malariaTypes.findByIds(params.malariaTypes);
 
     try {
       await countries.save(country);
