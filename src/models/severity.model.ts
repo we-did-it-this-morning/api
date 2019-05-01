@@ -1,5 +1,6 @@
-import { Entity, PrimaryColumn, Column, ManyToMany } from "typeorm";
+import { Entity, PrimaryColumn, Column, ManyToMany, ManyToOne, OneToMany } from "typeorm";
 import { PreventionModel } from "./prevention.model";
+import { MalariaTypeModel } from './malaria-type.model';
 
 @Entity()
 export class SeverityModel {
@@ -9,7 +10,10 @@ export class SeverityModel {
   @Column()
   description: string;
 
-  @ManyToMany(type => PreventionModel)
+  @ManyToMany(type => PreventionModel, preventionModel => preventionModel.severities)
   preventions: PreventionModel[];
+
+  @OneToMany(type => MalariaTypeModel, m => m.severity)
+  malariaType: MalariaTypeModel;
 
 }

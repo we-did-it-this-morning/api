@@ -3,6 +3,7 @@ import { UserModel } from './../models/user.model';
 import * as bcrypt from "bcrypt";
 import { HttpMethod } from './../classes/route';
 import { Route } from '../classes/route';
+import { UserManager } from '../classes/user-manager';
 
 export class RegisterRoute extends Route {
   public getMethod() {
@@ -17,11 +18,7 @@ export class RegisterRoute extends Route {
     if (!params.username || !params.password || params.username.trim().length == 0 || params.password.trim().length == 0)
       throw 'Missing username and/or password';
       
-    const user: UserModel = new UserModel();
-    user.username = params.username.trim();
-
-    const hashedPassword = bcrypt.hashSync(params.password.trim(), 10);
-    user.passwordHash = hashedPassword;
+    const user = UserManager.generateUserFromUsernamePassword(params.username, params.password);
 
     const users = db.getRepository(UserModel);
     

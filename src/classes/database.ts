@@ -8,6 +8,8 @@ import { MalariaTypeModel } from './../models/malaria-type.model';
 import { createConnection, Connection } from "typeorm";
 import { TreatmentModel } from '../models/treatment.model';
 import { UserModel } from '../models/user.model';
+import { config } from '../config';
+import { UserManager } from './user-manager';
 
 export class Database {
   private static connection: Connection = null;
@@ -34,22 +36,43 @@ export class Database {
       if (this.isInitialising) return;
       this.isInitialising = true;
 
-      this.connection = await createConnection({
-        type: "sqlite",
-        database: "db.sqlite",
-        entities: [
-          MalariaTypeModel,
-          CountryModel,
-          SymptomModel,
-          SymptomTypeModel,
-          TreatmentModel,
-          TreatmentTypeModel,
-          UserModel,
-          SeverityModel,
-          PreventionModel,
-        ],
-        synchronize: true
-      });
+      const entities = [
+        MalariaTypeModel,
+        CountryModel,
+        SymptomModel,
+        SymptomTypeModel,
+        TreatmentModel,
+        TreatmentTypeModel,
+        UserModel,
+        SeverityModel,
+        PreventionModel,
+      ];
+
+      if (config.isProdMode) {
+        this.connection = await createConnection({
+          type: "postgres",
+          url: process.env.DATABASE_URL,
+          entities,
+          synchronize: true
+        });
+      }
+      else {
+        this.connection = await createConnection({
+          type: "sqlite",
+          database: "db.sqlite",
+          entities,
+          synchronize: true
+        });
+      }
+
+      // add our initial user if they do not exist
+      const users = this.connection.getRepository(UserModel);
+      if (!await users.findOne({
+        username: 'admin'
+      })) {
+        const user = UserManager.generateUserFromUsernamePassword('admin', '1234');
+        await users.save(user);
+      }
 
       Database.hasInitialised = true;
       while (this.readyListeners.length) {

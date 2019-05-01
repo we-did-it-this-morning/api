@@ -1,0 +1,671 @@
+<html lang='en'>
+    <head>
+        <title>Malaria API</title>
+        <meta charset='utf-8'>
+        <meta name='author' content='Wian du Plooy & Matthew Evans'>
+        <style>
+            body {
+                background-color: #F2F4F3; 
+            }
+            
+            h1 {
+                color: #BB4430;
+                text-align: center;
+                margin: auto;
+            }
+
+            h2 {
+                color: white;
+                text-align: center;
+                margin: auto;
+            }
+            
+            table {
+                border-collapse: collapse;
+                width: 85%;
+                margin: auto;
+            }
+
+            td, th {
+                text-align: left;
+                padding: 8px;
+            }
+            
+            tr:nth-child(even) {
+                background-color: #E6E6E9
+            }
+            
+            tr:nth-child(odd) {
+                background-color: #f2f2f2
+            }
+            
+            th {
+                background-color: #BB4430;
+                color: white;
+                margin-bottom: 0.1em;
+            }
+            
+            th.center {    
+                text-align: center;
+            }
+            
+            tr.blank td {
+                padding: 0.1em;
+            }            
+        </style>
+    </head>
+    <body>
+        <h1>Malaria API</h1>
+        <br>
+        <table>
+            <tr>
+                <th colspan='5'><h2>Basic Info</h2></th>
+            </tr>
+            <tr>
+                <td colspan='5'>                    
+<pre><code>POST type must be application/json
+
+All routes that needs authentication, require the token appended to the url in the GET parameters:
+/update-country?token=abcdef    
+(Put the other expected data in body)
+
+If an error occurs the following will be returned:
+{
+    success: false,
+    message: string
+}
+Otherwise
+{
+    success: true,
+    data: NULL || { Object } || [ Array ]
+}</code></pre>
+                </td>
+            </tr>
+            <tr class='blank'><td></td></tr>
+            <tr>
+                <th colspan='5'><h2>Functions</h2></th>
+            </tr>
+            <tr>
+                <th>METHOD</th>
+                <th>ROUTE</th>
+                <th>EXPECTS</th>
+                <th>DATA</th>
+                <th>AUTH?</th>
+            </tr>
+            <tr class='blank'><td></td></tr>
+            <tr>
+                <th colspan='5'>User Management</th>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/log-in</td>
+                <td>
+<pre><code>{
+    username: string,
+    password: string
+}</code></pre>
+                </td>
+                <td>
+<pre><code>{
+    token: string
+}</code></pre>
+                </td>
+                <td><input type='checkbox' disabled></td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/register</td>
+                <td>
+<pre><code>{
+    username: string,
+    password: string
+}</code></pre>
+                </td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td><input type='checkbox' checked disabled></td>
+            </tr>
+            <tr class='blank'><td></td></tr>
+            <tr>
+                <th colspan='5'>Countries</th>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/update-country</td>
+                <td>
+<pre><code>{
+    id?: number,
+    name: string,
+    malariaTypes: number[]                 
+}</code></pre>
+                </td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td><input type='checkbox' checked disabled></td>
+            </tr>
+            <tr>
+                    <td>POST</td>
+                    <td>/delete-country</td>
+                    <td>
+<pre><code>{
+    id: number               
+}</code></pre>
+                    </td>
+                    <td>
+<pre><code>NULL</code></pre>
+                    </td>
+                    <td><input type='checkbox' checked disabled></td>
+                </tr>
+            <tr>
+                <td>GET</td>
+                <td>/countries</td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td>
+<pre><code>[
+    {
+        id: number,
+        name: string,
+        malariaTypes: number[]
+    },
+    ...
+]</code></pre>
+                </td>
+                <td><input type='checkbox' disabled></td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/country</td>
+                <td>
+<pre><code>{
+    id: number          
+}</code></pre>
+                </td>
+                <td>
+<pre><code>{
+    id: number,
+    name: string,
+    malariaTypes: number[]                 
+}</code></pre>
+                </td>
+                <td><input type='checkbox' disabled></td>
+            </tr>
+            <tr class='blank'><td></td></tr>
+            <tr>
+                <th colspan='5'>Severities</th>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/update-severity</td>
+                <td>
+<pre><code>{
+    level: number,
+    description: string,
+    preventions: number[]              
+}</code></pre>
+                </td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td><input type='checkbox' checked disabled></td>
+            </tr><tr>
+                <td>POST</td>
+                <td>/delete-severity</td>
+                <td>
+<pre><code>{
+    level: number             
+}</code></pre>
+                </td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td><input type='checkbox' checked disabled></td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/severities</td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td>
+<pre><code>[
+    {
+        level: number,
+        description: string,
+        preventions: number[]  
+    },
+    ...
+]</code></pre>
+                </td>
+                <td><input type='checkbox' disabled></td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/severity</td>
+                <td>
+<pre><code>{
+    level: number;                
+}</code></pre>
+                </td>
+                <td>
+<pre><code>{
+    level: number,
+    description: string,
+    preventions: number[]                
+}</code></pre>
+                </td>
+                <td><input type='checkbox' disabled></td>
+            </tr>
+            <tr class='blank'><td></td></tr>
+            <tr>
+                <th colspan='5'>Preventions</th>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/update-prevention</td>
+                <td>
+<pre><code>{
+    id?: number,
+    name: string,
+    description: string         
+}</code></pre>
+                </td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td><input type='checkbox' checked disabled></td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/delete-prevention</td>
+                <td>
+<pre><code>{
+    id: number       
+}</code></pre>
+                </td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td><input type='checkbox' checked disabled></td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/preventions</td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td>
+<pre><code>[
+    {
+        id: number,
+        name: string,
+        description: string
+    },
+    ...
+]</code></pre>
+                </td>
+                <td><input type='checkbox' disabled></td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/prevention</td>
+                <td>
+<pre><code>{
+    id: number;              
+}</code></pre>
+                </td>
+                <td>
+<pre><code>{
+    id: number,
+    name: string,
+    description: string              
+}</code></pre>
+                </td>
+                <td><input type='checkbox' disabled></td>
+            </tr>
+
+            <tr class='blank'><td></td></tr>
+            <tr>
+                <th colspan='5'>Malaria Types</th>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/update-malaria-type</td>
+                <td>
+<pre><code>{
+    id?: number,
+    name: string,
+    description: string,
+    severity: number,
+    treatments: number[],
+    symptoms: number[]     
+}</code></pre>
+                </td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td><input type='checkbox' checked disabled></td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/delete-malaria-type</td>
+                <td>
+<pre><code>{
+    id: number    
+}</code></pre>
+                </td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td><input type='checkbox' checked disabled></td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/malaria-types</td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td>
+<pre><code>[
+    {
+        id: number,
+        name: string,
+        description: string,
+        severity: number,
+        treatments: number[],
+        symptoms: number[]   
+    },
+    ...
+]</code></pre>
+                </td>
+                <td><input type='checkbox' disabled></td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/malaria-type</td>
+                <td>
+<pre><code>{
+    id: number            
+}</code></pre>
+                </td>
+                <td>
+<pre><code>{
+    id: number,
+    name: string,
+    description: string,
+    severity: number,
+    treatments: number[],
+    symptoms: number[]                    
+}</code></pre>
+                </td>
+                <td><input type='checkbox' disabled></td>
+            </tr>
+            
+            <tr class='blank'><td></td></tr>
+            <tr>
+                <th colspan='5'>Treatments</th>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/update-treatment</td>
+                <td>
+<pre><code>{
+    id?: number,
+    name: string,
+    description: string,
+    treatmentType: number    
+}</code></pre>
+                </td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td><input type='checkbox' checked disabled></td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/delete-treatment</td>
+                <td>
+<pre><code>{
+    id: number    
+}</code></pre>
+                </td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td><input type='checkbox' checked disabled></td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/treatments</td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td>
+<pre><code>[
+    {
+        id: number,
+        name: string,
+        description: string,
+        treatmentType: number
+    },
+    ...
+]</code></pre>
+                </td>
+                <td><input type='checkbox' disabled></td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/treatment</td>
+                <td>
+<pre><code>{
+    id: number            
+}</code></pre>
+                </td>
+                <td>
+<pre><code>{
+    id: number,
+    name: string,
+    description: string,
+    treatmentType: number               
+}</code></pre>
+                </td>
+                <td><input type='checkbox' disabled></td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/update-treatment-type</td>
+                <td>
+<pre><code>{
+    id?: number,
+    name: string       
+}</code></pre>
+                </td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td><input type='checkbox' checked disabled></td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td>/delete-treatment-type</td>
+                <td>
+<pre><code>{
+    id: number      
+}</code></pre>
+                </td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td><input type='checkbox' checked disabled></td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/treatment-types</td>
+                <td>
+<pre><code>NULL</code></pre>
+                </td>
+                <td>
+<pre><code>[
+    {
+        id: number,
+        name: string
+    },
+    ...
+]</code></pre>
+                </td>
+                <td><input type='checkbox' disabled></td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td>/treatment-type</td>
+                <td>
+<pre><code>{
+    id: number             
+}</code></pre>
+                </td>
+                <td>
+<pre><code>{
+    id: number,
+    name: string          
+}</code></pre>
+                </td>
+                <td><input type='checkbox' disabled></td>
+            </tr>
+
+            <tr class='blank'><td></td></tr>
+            <tr>
+                <th colspan='5'>Symptoms</th>
+            </tr>
+            <tr>
+                    <td>POST</td>
+                    <td>/update-symptom</td>
+                    <td>
+<pre><code>{
+    id?: number,
+    name: string,
+    description: string,
+    symptomType: number      
+}</code></pre>
+                    </td>
+                    <td>
+    <pre><code>NULL</code></pre>
+                    </td>
+                    <td><input type='checkbox' checked disabled></td>
+                </tr>
+                <tr>
+                    <td>POST</td>
+                    <td>/delete-symptom</td>
+                    <td>
+<pre><code>{
+    id: number    
+}</code></pre>
+                    </td>
+                    <td>
+    <pre><code>NULL</code></pre>
+                    </td>
+                    <td><input type='checkbox' checked disabled></td>
+                </tr>
+                <tr>
+                    <td>GET</td>
+                    <td>/symptoms</td>
+                    <td>
+    <pre><code>NULL</code></pre>
+                    </td>
+                    <td>
+<pre><code>[
+    {
+        id: number,
+        name: string,
+        description: string,
+        symptomType: number
+    },
+    ...
+]</code></pre>
+                    </td>
+                    <td><input type='checkbox' disabled></td>
+                </tr>
+                <tr>
+                    <td>GET</td>
+                    <td>/symptom</td>
+                    <td>
+<pre><code>{
+    id: number;              
+}</code></pre>
+                    </td>
+                    <td>
+    <pre><code>{
+        id: number,
+        name: string,
+        description: string,
+        symptomType: number               
+    }</code></pre>
+                    </td>
+                    <td><input type='checkbox' disabled></td>
+                </tr>
+                <tr>
+                    <td>POST</td>
+                    <td>/update-symptom-type</td>
+                    <td>
+<pre><code>{
+    id?: number,
+    name: string         
+}</code></pre>
+                    </td>
+                    <td>
+<pre><code>NULL</code></pre>
+                    </td>
+                    <td><input type='checkbox' checked disabled></td>
+                </tr>
+                <tr>
+                    <td>POST</td>
+                    <td>/delete-symptom-type</td>
+                    <td>
+<pre><code>{
+    id: number       
+}</code></pre>
+                    </td>
+                    <td>
+<pre><code>NULL</code></pre>
+                    </td>
+                    <td><input type='checkbox' checked disabled></td>
+                </tr>
+                <tr>
+                    <td>GET</td>
+                    <td>/symptom-types</td>
+                    <td>
+<pre><code>NULL</code></pre>
+                    </td>
+                    <td>
+<pre><code>[
+    {
+        id: number,
+        name: string
+    },
+    ...
+]</code></pre>
+                    </td>
+                    <td><input type='checkbox' disabled></td>
+                </tr>
+                <tr>
+                    <td>GET</td>
+                    <td>/symptom-type</td>
+                    <td>
+<pre><code>{
+    id: number             
+}</code></pre>
+                    </td>
+                    <td>
+<pre><code>{
+    id: number,
+    name: string          
+}</code></pre>
+                    </td>
+                    <td><input type='checkbox' disabled></td>
+                </tr>
+            
+        </table>
+    </body>
+</html>
