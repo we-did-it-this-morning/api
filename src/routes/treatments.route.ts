@@ -13,6 +13,6 @@ export class TreatmentsRoute extends Route {
   }
 
   public async routeFunction(params, db: Connection) {
-    return await db.getRepository(TreatmentModel).find();
+    return await db.getRepository(TreatmentModel).find({ loadRelationIds: true });
   }
 }

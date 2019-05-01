@@ -14,7 +14,10 @@ export class CountryRoute extends Route {
     }
 
     const country = await db.getRepository(CountryModel).findOne({
-      id: params.id
+      where: {
+        id: params.id
+      },
+      loadRelationIds: true,
     });
 
     console.log(country);

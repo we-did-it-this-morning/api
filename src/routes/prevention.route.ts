@@ -25,6 +25,6 @@ export class PreventionRoute extends Route {
 
     console.log(prevention, prevention.severities);
     
-    return true;
+    return prevention;
   }
 }

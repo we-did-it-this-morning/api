@@ -13,6 +13,6 @@ export class SymptomsRoute extends Route {
   }
 
   public async routeFunction(params, db: Connection) {
-    return await db.getRepository(SymptomModel).find();
+    return await db.getRepository(SymptomModel).find({ loadRelationIds: true });
   }
 }

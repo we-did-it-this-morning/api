@@ -47,7 +47,7 @@ export class UpdateTreatmentRoute extends Route {
         const new_treatment: TreatmentModel = new TreatmentModel();
         new_treatment.name = _name;
         new_treatment.description = _description;
-        new_treatment.treatmentType = _treatmentType;    
+        new_treatment.treatmentType = treatmentType;    
         
         await treatments.save(new_treatment);
     
@@ -69,7 +69,7 @@ export class UpdateTreatmentRoute extends Route {
 
         treatment.name = _name;
         treatment.description = _description;
-        treatment.treatmentType = _treatmentType;    
+        treatment.treatmentType = treatmentType;    
         
         await treatments.save(treatment);
     

@@ -47,7 +47,7 @@ export class UpdateSymptomRoute extends Route {
         const new_symptom: SymptomModel = new SymptomModel();
         new_symptom.name = _name;
         new_symptom.description = _description;
-        new_symptom.symptomType = _symptomType;    
+        new_symptom.symptomType = symptomType;    
         
         await symptoms.save(new_symptom);
     
@@ -69,7 +69,7 @@ export class UpdateSymptomRoute extends Route {
 
         symptom.name = _name;
         symptom.description = _description;
-        symptom.symptomType = _symptomType;    
+        symptom.symptomType = symptomType;    
         
         await symptoms.save(symptom);
     
