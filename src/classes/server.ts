@@ -1,6 +1,5 @@
 import { RegisterRoute } from './../routes/register.route';
 import { LoginRoute } from './../routes/login.route';
-import { HomeRoute } from '../routes/home.route';
 import { SymptomRoute } from '../routes/symptom.route';
 import { UpdateSymptomRoute } from '../routes/update-symptom.route';
 import { UpdateSymptomTypeRoute } from '../routes/update-symptom-type.route';
@@ -40,6 +39,8 @@ import { DeletePreventionRoute } from '../routes/delete-prevention.route';
 import { DeleteCountryRoute } from '../routes/delete-country.route';
 import { DeleteMalariaTypeRoute } from '../routes/delete-malaria-type.route';
 
+import * as path from 'path';
+
 export class Server {
   protected static instance: Server = null;
 
@@ -62,7 +63,6 @@ export class Server {
 
     // register non auth routes
     [
-      new HomeRoute(),
       new LoginRoute(),
       
       new SymptomRoute(),
@@ -116,6 +116,11 @@ export class Server {
       new UpdateMalariaTypeRoute(),
       new DeleteMalariaTypeRoute(),
     ].forEach(route => route.register(this.app, [authMiddleware]));
+
+    // register home route
+    this.app.get('/', (req, res) => {
+      res.sendFile(path.join(process.cwd(), 'src/views/index.html'));
+    });
 
     this.app.use(errorMiddleware);
 
