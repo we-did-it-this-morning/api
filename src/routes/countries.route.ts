@@ -9,6 +9,8 @@ export class CountriesRoute extends Route {
     return '/countries';
   }
   public async routeFunction(params, db: Connection) {
-   return await db.getRepository(CountryModel).find();
+   return await db.getRepository(CountryModel).find({ 
+    loadRelationIds: true
+   });
   }
 }

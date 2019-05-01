@@ -21,7 +21,10 @@ export class TreatmentRoute extends Route {
     const treatments = db.getRepository(TreatmentModel);
     
     const treatment: TreatmentModel = await treatments.findOne({
-      id: id
+      where: {
+        id: id
+      },
+      loadRelationIds: true,
     });
 
     console.log(treatment);
