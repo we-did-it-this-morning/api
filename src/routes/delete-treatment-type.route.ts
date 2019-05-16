@@ -31,14 +31,14 @@ export class DeleteTreatmentTypeRoute extends Route {
       throw 'A treatment type with that id does not exist';
     }
 
-    const check = db.getRepository(TreatmentModel).find({
+    const check: TreatmentModel = await db.getRepository(TreatmentModel).findOne({
       loadRelationIds: true,
       where: {
         treatmentType: treatmentType.id
       }
     });
 
-    if (check) {
+    if (check !== null && check !== undefined) {
       throw 'A treatment still references this treatment type';
     }
 

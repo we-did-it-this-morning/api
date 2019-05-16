@@ -26,14 +26,14 @@ export class DeleteSeverityRoute extends Route {
       throw 'A severity with that id does not exist';
     }
 
-    const check = db.getRepository(MalariaTypeModel).find({
+    const check: MalariaTypeModel = await db.getRepository(MalariaTypeModel).findOne({
       loadRelationIds: true,
       where: {
         severity: severity.level
       }
     });
 
-    if (check) {
+    if (check !== null && check !== undefined) {
       throw 'A malaria type still references this severity';
     }
 

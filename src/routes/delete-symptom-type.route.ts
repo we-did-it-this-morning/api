@@ -31,14 +31,14 @@ export class DeleteSymptomTypeRoute extends Route {
       throw 'A symptom type with that id does not exist';
     }
 
-    const check = db.getRepository(SymptomModel).find({
+    const check: SymptomModel = await db.getRepository(SymptomModel).findOne({
       loadRelationIds: true,
       where: {
         symptomType: symptomType.id
       }
     });
 
-    if (check) {
+    if (check !== null && check !== undefined) {
       throw 'A symptom still references this symptom type';
     }
 
