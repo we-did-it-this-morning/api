@@ -2,6 +2,7 @@ import { Connection } from 'typeorm';
 import { HttpMethod } from '../classes/route';
 import { Route } from '../classes/route';
 import { TreatmentTypeModel } from '../models/treatment-type.model';
+import { TreatmentModel } from '../models/treatment.model';
 
 export class DeleteTreatmentTypeRoute extends Route {
   public getMethod() {
@@ -28,6 +29,17 @@ export class DeleteTreatmentTypeRoute extends Route {
 
     if (!treatmentType) {
       throw 'A treatment type with that id does not exist';
+    }
+
+    const check = db.getRepository(TreatmentModel).find({
+      loadRelationIds: true,
+      where: {
+        treatmentType: treatmentType.id
+      }
+    });
+
+    if (check) {
+      throw 'A treatment still references this treatment type';
     }
 
     await treatmentTypes.delete(treatmentType);

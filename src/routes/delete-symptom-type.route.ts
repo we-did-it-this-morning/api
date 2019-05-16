@@ -2,6 +2,7 @@ import { Connection } from 'typeorm';
 import { HttpMethod } from '../classes/route';
 import { Route } from '../classes/route';
 import { SymptomTypeModel } from '../models/symptom-type.model';
+import { SymptomModel } from '../models/symptom.model';
 
 export class DeleteSymptomTypeRoute extends Route {
   public getMethod() {
@@ -28,6 +29,17 @@ export class DeleteSymptomTypeRoute extends Route {
 
     if (!symptomType) {
       throw 'A symptom type with that id does not exist';
+    }
+
+    const check = db.getRepository(SymptomModel).find({
+      loadRelationIds: true,
+      where: {
+        symptomType: symptomType.id
+      }
+    });
+
+    if (check) {
+      throw 'A symptom still references this symptom type';
     }
 
     await symptomTypes.delete(symptomType);
