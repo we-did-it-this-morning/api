@@ -13,7 +13,7 @@ export class SymptomModel {
   @Column()
   description: string;
 
-  @ManyToMany(type => MalariaTypeModel)
+  @ManyToMany(type => MalariaTypeModel, mt => mt.symptoms)
   malariaTypes: MalariaTypeModel[];
 
   @ManyToOne(type => SymptomTypeModel, symptomType => symptomType.symptoms)

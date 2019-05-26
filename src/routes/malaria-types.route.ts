@@ -9,6 +9,6 @@ export class MalariaTypesRoute extends Route {
     return '/malaria-types';
   }
   public async routeFunction(params, db: Connection) {
-   return await db.getRepository(MalariaTypeModel).find({ loadRelationIds: true });
+    return await db.getRepository(MalariaTypeModel).find({ loadRelationIds: true });
   }
 }
