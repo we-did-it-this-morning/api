@@ -28,11 +28,11 @@ export class UpdateMalariaTypeRoute extends Route {
 
       // Check if the severity exists      
       const severities = db.getRepository(SeverityModel);
-      const _severityCheck: SeverityModel = await severities.findOne({
+      const severityObj: SeverityModel = await severities.findOne({
         level: _severity
       });
   
-      if (!_severityCheck) {
+      if (!severityObj) {
         throw 'That severity level does not exist';
       } 
 
@@ -76,9 +76,9 @@ export class UpdateMalariaTypeRoute extends Route {
         const new_malariaType: MalariaTypeModel = new MalariaTypeModel();
         new_malariaType.name = _name;
         new_malariaType.description = _description;
-        new_malariaType.severity = _severity;    
-        new_malariaType.treatments = _treatments;    
-        new_malariaType.symptoms = _symptoms;    
+        new_malariaType.severity = severityObj;    
+        new_malariaType.treatments = await treatments.findByIds(_treatments);    
+        new_malariaType.symptoms = await symptoms.findByIds(_symptoms);    
         
         await malariaTypes.save(new_malariaType);
     
@@ -100,9 +100,9 @@ export class UpdateMalariaTypeRoute extends Route {
 
         malariaType.name = _name;
         malariaType.description = _description;
-        malariaType.severity = _severity;    
-        malariaType.treatments = _treatments;    
-        malariaType.symptoms = _symptoms;    
+        malariaType.severity = severityObj;    
+        malariaType.treatments = await treatments.findByIds(_treatments);
+        malariaType.symptoms = await symptoms.findByIds(_symptoms);      
         
         await malariaTypes.save(malariaType);
     

@@ -20,7 +20,10 @@ export class MalariaTypeRoute extends Route {
     const malariaTypes = db.getRepository(MalariaTypeModel);
     
     const malariaType: MalariaTypeModel = await malariaTypes.findOne({
-      id: id
+      where: {
+        id: id
+      },
+      loadRelationIds: true,
     });
 
     console.log(malariaType);

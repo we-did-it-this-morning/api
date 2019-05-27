@@ -18,14 +18,14 @@ export class MalariaTypeModel {
   @ManyToOne(type => SeverityModel)
   severity: SeverityModel;
 
-  @ManyToMany(type => CountryModel)
+  @ManyToMany(type => CountryModel, cm => cm.malariaTypes)
   countries: CountryModel[];
 
-  @ManyToMany(type => SymptomModel)
+  @ManyToMany(type => SymptomModel, sm => sm.malariaTypes)
   @JoinTable()
   symptoms: SymptomModel[];
 
-  @ManyToMany(type => TreatmentModel)
+  @ManyToMany(type => TreatmentModel, tm => tm.malariaType)
   @JoinTable()
   treatments: TreatmentModel[];
 }

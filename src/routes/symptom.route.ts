@@ -21,7 +21,10 @@ export class SymptomRoute extends Route {
     const symptoms = db.getRepository(SymptomModel);
     
     const symptom: SymptomModel = await symptoms.findOne({
-      id: id
+      where: {
+        id: id
+      },
+      loadRelationIds: true,
     });
 
     console.log(symptom);
